@@ -25,7 +25,7 @@ SECRET_KEY = 'fhifwjixve2@3w1ufwddj0^y5ed%7shudl-*3$5ietgt!mex+7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://resume-format-fa.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['resume-format-fa.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
