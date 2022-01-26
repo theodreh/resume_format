@@ -20,6 +20,7 @@ DateTime==4.3
 decorator==4.4.1
 decouple==0.0.7
 distro==1.4.0
+dj-database-url==0.5.0
 Django==3.1.5
 docx==0.2.4
 docx2txt==0.8
