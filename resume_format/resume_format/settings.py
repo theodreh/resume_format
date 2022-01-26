@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'resume_format.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'localhost',
-        'NAME': 'music_library_db',
-        'USER': 'openpg',
-        'PASSWORD': 'openpgpwd',
-        'PORT':2345,
+        'HOST': 'ec2-3-224-157-224.compute-1.amazonaws.com',
+        'NAME': 'dfqrj68qnv8jp7',
+        'USER': 'txosjtklicmbir',
+        'PASSWORD': '8565f2d40455e4e5f6ec409209c6b886740589f84907e03214501cf71a4052ab',
+        'PORT':5432,
     }
 }
 
