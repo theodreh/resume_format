@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign in Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="static/authentication/css/style.css">
+</head>
+<body>
+    {% csrf_token %}
+    <div class="container_div container">
+        <div class="row w-100 d-flex justify-content-center align-items-center main_div">
+            <div class="col-lg-12 col-md-8 col-xxl-5">
+                <div class="card py-5 px-4">
+                    <p class="heading_para">Welcome {{first_name}} {{last_name}}</p>
+                    <input id="user_id" value="{{id}}" hidden/>
+                    <div class="form-row email_div">
+                        <div class="col-lg-6">
+                            <label class="footer_para">First name</label>
+                            <input id="user_first_name" class="form-control type="text" placeholder="First Name" value="{{ first_name }}">
+                            <span id="ft_name-error" class="error-message"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="footer_para">Last name</label>
+                            <input id="user_last_name" class="form-control"  type="text" placeholder="Last Name"  value="{{ last_name }}">
+                            <span id="ls_name-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row detail_div_row">
+                        <div class="col-lg-6">
+                            <label class="footer_para">Age</label>
+                            <input id="age" class="form-control"  type="text" placeholder="Age"  value="{{ age }}">
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="footer_para">Date of birth</label>
+                            <input id="date_of_birth" class="form-control"  type="date" placeholder="Date of Birth"  value="{{ dob }}">
+                        </div>
+                    </div>
+                    <div class="form-row detail_div_row">
+                        <div class="col-lg-6">
+                            <label class="footer_para">Email</label>
+                            <input id="email_id" class="form-control email_val"  type="text" placeholder="Email"  value="{{ email }}">
+                            <span id="email-error" class="error-message"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="footer_para">Contact number</label>
+                            <input id="contact" class="form-control"  type="text" placeholder="Contact number"  value="{{ contact }}">
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-2">
+                              <button id="save_user_btn" class="btn btn-primary" type="button">Save</button>
+                        </div>
+                        <div class="col-lg-2">
+                              <button id="submit_sign_out_btn" class="btn btn-primary" type="button">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/authentication/js/authentication.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.getElementById ("save_user_btn").addEventListener ("click", save_user_details, false);
+        document.getElementById ("submit_sign_out_btn").addEventListener ("click", sign_out, false);
+        $('#user_first_name').focus(function(){
+             $('#ft_name-error').removeClass("is-visible");
+        })
+        $('#user_last_name').focus(function(){
+             $('#ls_name-error').removeClass("is-visible");
+        })
+        $('#email_id').focus(function(){
+             $('#email-error').removeClass("is-visible");
+        })
+    </script>
+</body>
+</html>

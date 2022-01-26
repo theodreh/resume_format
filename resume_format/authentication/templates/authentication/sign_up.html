@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign up Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="static/authentication/css/style.css">
+</head>
+<body>
+    {% csrf_token %}
+    <div class="container_div container">
+        <div class="row w-100 d-flex justify-content-center align-items-center main_div">
+            <div class="col-lg-12 col-md-8 col-xxl-5 py-5">
+                <div class="card py-5 px-4">
+                    <p class="heading_para">Sign Up to Our Service</p>
+                    <div class="form-row sign_up_email_div">
+                        <div class="col-lg-6">
+                            <label class="image-replace username">First name</label>
+                            <input id="user_first_name" class="form-control full-width has-padding has-border"  type="text" placeholder="First Name" required>
+                            <span id="ft_name-error" class="error-message"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="image-replace username">Last name</label>
+                            <input id="user_last_name" class="form-control full-width has-padding has-border "  type="text" placeholder="Last Name" required>
+                            <span id="ls_name-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-12">
+                            <label class="image-replace email">E-mail</label>
+                            <input id="email_id" class="form-control full-width has-padding has-border email_val"  type="text" placeholder="Email" required>
+                            <span id="email-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-6">
+                            <label class="image-replace password">Password</label>
+                            <input id="user_password" class="form-control full-width has-padding has-border"  type="password" placeholder="password" required>
+                            <span id="password-error" class="error-message"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="image-replace password">Confirm password</label>
+                            <input id="confirm_password" class="form-control full-width has-padding has-border"  type="password" placeholder="Confirm password" required>
+                            <span id="confirm_password-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-12">
+                              <button id="submit_sign_up_btn" class="btn btn-primary" type="button">Sign up</button>
+                        </div>
+                    </div>
+                    <div class="div_row">
+                        <p class="footer_para">Already have an account? <a href="/signin" id="sign_in">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/authentication/js/authentication.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.getElementById ("submit_sign_up_btn").addEventListener ("click", submit_sign_up_details, false);
+        $('#user_first_name').focus(function(){
+             $('#ft_name-error').removeClass("is-visible");
+        })
+        $('#user_last_name').focus(function(){
+             $('#ls_name-error').removeClass("is-visible");
+        })
+        $('#email_id').focus(function(){
+             $('#email-error').removeClass("is-visible");
+        })
+        $('#user_password').focus(function(){
+             $('#password-error').removeClass("is-visible");
+        })
+        $('#confirm_password').focus(function(){
+             $('#confirm_password-error').removeClass("is-visible");
+        })
+
+    </script>
+</body>
+</html>

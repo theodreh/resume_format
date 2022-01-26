@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign in Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="static/authentication/css/style.css">
+</head>
+<body>
+    {% csrf_token %}
+    <div class="container_div container">
+        <div class="row w-100 d-flex justify-content-center align-items-center main_div">
+            <div class="col-lg-12 col-md-8 col-xxl-5">
+                <div class="card py-5 px-4">
+                    <p class="heading_para">Login Page</p>
+                    <div class="form-row email_div">
+                        <div class="col-lg-12">
+                            <label class="image-replace email">E-mail</label>
+                            <input type="email" class="form-control full-width has-padding has-border" id="email_id" placeholder="Email">
+                            <span id="email-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-12">
+                            <label class="image-replace password">Password</label>
+                            <input type="password" class="form-control full-width has-padding has-border" id="user_password" placeholder="Password">
+                            <span id="password-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row div_row">
+                        <div class="col-lg-12">
+                              <button id="submit_sign_in_btn" class="btn btn-primary" type="button">Sign In</button>
+                        </div>
+                    </div>
+                    <div class="div_row">
+                        <p class="footer_para">Don't have an account? <a href="/signup" id="sign_up">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/authentication/js/authentication.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        document.getElementById ("submit_sign_in_btn").addEventListener ("click", submit_sign_in_details, false);
+        $('#email_id').focus(function(){
+            $('#email-error').removeClass("is-visible");
+        })
+        $('#user_password').focus(function(){
+            $('#password-error').removeClass("is-visible");
+        })
+    </script>
+</body>
+</html>
