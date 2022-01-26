@@ -119,12 +119,12 @@ function submit_sign_in_details(){
         headers: { "X-CSRFToken": csrf_val},
         success: function(result) {
             if(result.status==1){
-                swal({title: "Success!",text: result.message,type: "success",timer: 1000}).then(function(){
+                swal({title: "Success!",text: result.message,type: "success",timer: 3000}).then(function(){
                     window.location.href='/user_details'
                 });
             }
             else{
-                swal({title: "Warning!",text: result.message,type: "warning",timer: 1000});
+                swal("Warning!",result.message,"warning");
             }
 
 	    },
