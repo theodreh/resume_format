@@ -31,7 +31,7 @@
                     <div class="form-row detail_div_row">
                         <div class="col-lg-6">
                             <label class="footer_para">Age</label>
-                            <input id="age" class="form-control"  type="text" placeholder="Age"  value="{{ age }}">
+                            <input id="age" class="form-control"  type="tel" placeholder="Age" onkeypress="return onlyNumberKey(event)" value="{{ age }}">
                         </div>
                         <div class="col-lg-6">
                             <label class="footer_para">Date of birth</label>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-lg-6">
                             <label class="footer_para">Contact number</label>
-                            <input id="contact" class="form-control"  type="text" placeholder="Contact number"  value="{{ contact }}">
+                            <input id="contact" class="form-control"  type="tel" placeholder="Contact number" onkeypress="return onlyNumberKey(event)"  value="{{ contact }}">
                         </div>
                     </div>
                     <div class="form-row div_row">
@@ -66,6 +66,7 @@
     <script>
         document.getElementById ("save_user_btn").addEventListener ("click", save_user_details, false);
         document.getElementById ("submit_sign_out_btn").addEventListener ("click", sign_out, false);
+        document.getElementById("email_id").addEventListener ("blur", blur_email_val, false);
         $('#user_first_name').focus(function(){
              $('#ft_name-error').removeClass("is-visible");
         })
