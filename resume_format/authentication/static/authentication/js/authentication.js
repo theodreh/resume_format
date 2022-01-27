@@ -6,6 +6,9 @@ function submit_sign_up_details(){
     var user_password=$('#user_password').val().trim();
     var user_conf_password=$('#confirm_password').val().trim();
     var check_error=false
+    var mail_format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    blur_email_val()
 
     if(!user_first_name){
         $('#ft_name-error').text("Enter first name")
@@ -29,13 +32,21 @@ function submit_sign_up_details(){
         check_error=true
     }
     else{
-         if(email_val==true){
-            $('#email-error').text("Email address already exist")
+         if(!user_email.match(mail_format)){
+            $('#email-error').text("Enter a valid email")
             $('#email-error').addClass("is-visible");
             check_error=true
         }
         else{
-            $('#email-error').removeClass("is-visible");
+            console.log(email_val,"email_val")
+            if(email_val==true){
+                $('#email-error').text("Email address already exist")
+                $('#email-error').addClass("is-visible");
+                check_error=true
+            }
+            else{
+                $('#email-error').removeClass("is-visible");
+            }
         }
     }
     if(!user_password){
@@ -119,7 +130,7 @@ function submit_sign_in_details(){
         headers: { "X-CSRFToken": csrf_val},
         success: function(result) {
             if(result.status==1){
-                swal({title: "Success!",text: result.message,type: "success",timer: 1000}).then(function(){
+                swal({title: "Please wait!",text: result.message,type: "success",timer: 1000}).then(function(){
                     window.location.href='/user_details'
                 });
             }
@@ -142,6 +153,9 @@ function save_user_details(){
     var dob=$('#date_of_birth').val().trim();
     var contact=$('#contact').val().trim();
     var check_error=false
+    var mail_format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    blur_email_val()
 
     if(!user_first_name){
         $('#ft_name-error').text("Enter first name")
@@ -165,15 +179,25 @@ function save_user_details(){
         check_error=true
     }
     else{
-        if(email_val==true){
-            $('#email-error').text("Email address already exist")
+        if(!user_email.match(mail_format)){
+            $('#email-error').text("Enter a valid email")
             $('#email-error').addClass("is-visible");
             check_error=true
         }
         else{
-            $('#email-error').removeClass("is-visible");
+            console.log(email_val,"email_val")
+            if(email_val==true){
+                $('#email-error').text("Email address already exist")
+                $('#email-error').addClass("is-visible");
+                check_error=true
+            }
+            else{
+                $('#email-error').removeClass("is-visible");
+            }
         }
+
     }
+    console.log(check_error,"check_error")
     if(check_error==true){
         return check_error
     }
@@ -200,17 +224,18 @@ function sign_out(event){
         data:{},
         headers: { "X-CSRFToken": csrf_val},
         success: function(result) {
-            swal({title: "Success!",text: result.message,type: "success",timer: 1000}).then(function(){
+            swal({title: "Please wait!",text: result.message,timer: 1000}).then(function(){
                     window.location.href='/signin'
                 });
 	    },
     });
 }
 
-$(".email_val").blur(function(){
+function blur_email_val(){
     var csrf_val = $('[name=csrfmiddlewaretoken]').val();
     var user_email=$('#email_id').val().trim();
     var user_id=$('#user_id').val();
+
     $.ajax({
         url:'validate_email',
         type:'POST',
@@ -218,13 +243,66 @@ $(".email_val").blur(function(){
         headers: { "X-CSRFToken": csrf_val},
         success: function(result) {
             if(result.status==0){
-                swal({title: "Success!",text: result.message,type: "success",timer: 1000})
                 email_val=true
+                swal("Warning!",result.message,"warning")
             }
             else{
                 email_val=false
             }
+            return email_val
+
 
 	    },
     });
-  });
+  };
+
+$(".password_eye_btn").click(function(){
+      var user_password = document.getElementById("user_password");
+      var show_eye = document.getElementById("show_eye");
+      var hide_eye = document.getElementById("hide_eye");
+      hide_eye.classList.remove("d-none");
+      if (user_password.type === "password") {
+        user_password.type = "text";
+        $('#show_eye').hide();
+        $('#hide_eye').show();
+      } else {
+        user_password.type = "password";
+        $('#show_eye').show();
+        $('#hide_eye').hide();
+      }
+});
+
+$(".conf_password_eye_btn").click(function(){
+      var user_password = document.getElementById("confirm_password");
+      var show_eye = document.getElementById("conf_show_eye");
+      var hide_eye = document.getElementById("conf_hide_eye");
+      hide_eye.classList.remove("d-none");
+      if (user_password.type === "password") {
+        user_password.type = "text";
+        $('#conf_show_eye').hide();
+        $('#conf_hide_eye').show();
+      } else {
+        user_password.type = "password";
+        $('#conf_show_eye').show();
+        $('#conf_hide_eye').hide();
+      }
+});
+
+function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        var input = $(evt.target).val().toString()
+        var inp_id = $(evt.target).attr("id")
+        console.log(inp_id,"inp_id")
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        var check_error = true
+        if(inp_id === 'contact' && input.length>9){
+            check_error = false
+        }
+        if(inp_id === 'age' && input.length>2){
+            check_error = false
+        }
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
+             check_error = false;
+        }
+        return check_error;
+    }
