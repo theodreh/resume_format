@@ -49,6 +49,33 @@ label.image-replace {
   background-repeat: no-repeat;
   background-position: 50% 0;
 }
+span.show_password{
+    position: absolute;
+    left: 464px;
+    top: 9px;
+    filter: contrast(0);
+}
+span.show_password:hover{
+  cursor: pointer;
+}
+span.signup_show_password{
+    position: absolute;
+    right: 17px;
+    top: 9px;
+    filter: contrast(0);
+}
+span.signup_show_password:hover{
+  cursor: pointer;
+}
+span.conf_show_password{
+    position: absolute;
+    left: 217px;
+    top: 9px;
+    filter: contrast(0);
+}
+span.conf_show_password:hover{
+  cursor: pointer;
+}
 label.username {
   background-image: url("https://codyhouse.co/demo/login-signup-modal-window/img/cd-icon-username.svg");
   filter:contrast(0);
@@ -70,7 +97,7 @@ input.full-width {
   width: 100%;
 }
 input.has-padding {
-  padding: 12px 20px 12px 50px;
+  padding: 12px 36px 12px 50px;
 }
 .error-message {
   display: inline-block;
@@ -117,4 +144,15 @@ input.has-padding {
 .footer_para{
     font-size:15px;
     color:white;
+}
+.login_oueter {
+    width: 360px;
+    max-width: 100%;
+}
+.logo_outer{
+    text-align: center;
+}
+.logo_outer img{
+    width:120px;
+    margin-bottom: 40px;
 }
