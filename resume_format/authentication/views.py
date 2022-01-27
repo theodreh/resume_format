@@ -43,7 +43,7 @@ def sign_in(request):
         if user_obj:
             global user_id
             user_id = user_obj[0].id
-            response = {'status': 1, 'message': "Successfully logged in"}
+            response = {'status': 1, 'message': "Logging in"}
             login(request, user_obj[0])
         else:
             print('else')
