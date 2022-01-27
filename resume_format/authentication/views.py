@@ -37,18 +37,21 @@ def sign_up(request):
 
 def sign_in(request):
     if request.method == 'POST':
-        email_id = request.POST.get('email')
-        password = request.POST.get('password')
-        user_obj = UserModel.objects.filter(email_id=email_id, password=password)
-        if user_obj:
-            global user_id
-            user_id = user_obj[0].id
-            response = {'status': 1, 'message': "Logging in"}
-            login(request, user_obj[0])
-        else:
-            print('else')
-            response = {'status': 0, 'message': "Either Email or Password is In correct"}
-        return HttpResponse(json.dumps(response), content_type='application/json')
+        try:
+            email_id = request.POST.get('email')
+            password = request.POST.get('password')
+            user_obj = UserModel.objects.filter(email_id=email_id, password=password)
+            if user_obj:
+                global user_id
+                user_id = user_obj[0].id
+                response = {'status': 1, 'message': "Logging in ..."}
+                login(request, user_obj[0])
+            else:
+                response = {'status': 0, 'message': "Either Email or Password is In correct"}
+            return HttpResponse(json.dumps(response), content_type='application/json')
+        except:
+            response = {'status': 0, 'message': "Internal Server Error, Try after sometime"}
+            return HttpResponse(json.dumps(response), content_type='application/json')
     return render(request, "authentication/sign_in.html")
 
 
@@ -112,7 +115,7 @@ def user_details(request):
 
 def sign_out(request):
     logout(request)
-    response = {'status': 1, 'message': "Successfully logged out"}
+    response = {'status': 1, 'message': "Logging out ..."}
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
@@ -122,7 +125,6 @@ def validate_email(request):
         u_id = request.POST.get('user_id')
         email_id = request.POST.get('user_email')
         email_obj = UserModel.objects.filter(email_id=email_id)
-        print(len(email_obj),"len(email_obj)")
         if u_id:
             user_obj = UserModel.objects.filter(id=u_id)
             if email_obj[0].email_id and user_obj[0].email_id and email_obj[0].email_id != user_obj[0].email_id and \
